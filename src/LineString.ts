@@ -7,7 +7,7 @@ import Point from "./Point";
 export default class LineString implements Geometry {
   private points: Point[];  
   constructor (points?: Point[]){
-    this.points=points || [];
+    this.points=points || [];
   }
   translate(dx: number, dy: number) {
     for (let point of this.points){
@@ -27,5 +27,12 @@ export default class LineString implements Geometry {
     getPointN(n:number): Point{
         return this.points[n];
 
-    }   
+    }  
+    clone(): LineString{
+        const points=new Array<Point>;
+        for(let point of this.points){
+            points.push(point.clone())
+        }
+        return new LineString(points);
+    }
 }

@@ -4,6 +4,7 @@ import Geometry from "./Geometry";
 
 export default class Point implements Geometry {
   private coordinate?: Coordinate;
+  points: any;
 
   constructor(coordinate?: Coordinate) {
     this.coordinate = coordinate || [] ;
@@ -31,8 +32,13 @@ export default class Point implements Geometry {
     return this.coordinate.length > 0 ? this.coordinate[0] : Number.NaN;
   }
 
+
   y(): number {
     return this.coordinate.length > 1 ? this.coordinate[1] : Number.NaN;
   }
 
+  clone():Point{
+    return new Point ([... this.coordinate]);
+
+  }
 }

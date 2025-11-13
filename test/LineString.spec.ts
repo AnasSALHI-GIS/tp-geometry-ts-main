@@ -36,3 +36,10 @@ it("test translate linestring", () => {
     expect(l_vide.isEmpty()).to.be.true;
 });
 
+it("test clone", () => {
+    const l=new Point ([3.0,4.0]);
+    var p1= l.clone();
+
+    expect(p1.getCoordinate()).to.deep.equal([3.0,4.0]);
+});
+
