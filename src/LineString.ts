@@ -4,13 +4,13 @@ import Point from "./Point";
 
 
 
-export default class LineString {
+export default class LineString implements Geometry {
   private points: Point[];  
   constructor (points?: Point[]){
     this.points=points;
   }
   getType():string{
-    return("LineString");
+    return "LineString";
   }
     getNumPoints(): number{
     return this.points? this.points.length:0;

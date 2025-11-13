@@ -10,7 +10,7 @@ export default class Point implements Geometry {
   }
 
   getType(): string {
-    return("Point")
+    return "Point";
   }
 
   getCoordinate(): Coordinate {
