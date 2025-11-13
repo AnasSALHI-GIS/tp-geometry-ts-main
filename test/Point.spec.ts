@@ -9,6 +9,9 @@ describe("test Point", () => {
         expect(p.getCoordinate()).to.equal(undefined);
         expect(Number.isNaN(p.x()));
         expect(Number.isNaN(p.y()));
+
+    });
+    it("test default LineString", ()=>{
         const g=new LineString();
         expect(g.getType()).to.equal("LineString");
         expect(g.getNumPoints()).to.equal(0);
