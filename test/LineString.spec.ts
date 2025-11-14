@@ -2,6 +2,7 @@ import "mocha";
 import { expect } from "chai";
 import Point from "../src/Point";
 import LineString from '../src/LineString'
+import EnvelopeBuilder from '../src/EnvelopeBuilder'
 
 
 describe("test default LineString", ()=>{
@@ -42,4 +43,11 @@ it("test clone", () => {
 
     expect(p1.getCoordinate()).to.deep.equal([3.0,4.0]);
 });
+
+/*it("test insert", () => {
+    const l=new EnvelopeBuilder ();
+    l.insert ([0.0,1.0]);
+    l.insert([2.0,0.0]);
+    expect(l.build()).to.deep.equal((2.0,0.0),(0.0,1.0));
+});*/
 

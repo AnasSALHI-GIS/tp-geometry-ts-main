@@ -45,7 +45,7 @@ export default class Envelope{
         }
     }
     toString():string{
-        return;
-
+        
+            return 'Envelope[(${this.getXMin()}, ${this.getYMin()}), (${this.getXMax()}, ${this.getYMax()})]';
     }
 }
