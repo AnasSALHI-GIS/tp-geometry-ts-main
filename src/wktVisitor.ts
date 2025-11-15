@@ -2,6 +2,7 @@ import GeometryVisitor from '../src/GeometryVisitor'
 import Point from "./Point";
 import LineString from '../src/LineString'
 import Geometry from './Geometry';
+import GeometryCollection from './GeometryCollection';
 
 export default class wktVisitor implements GeometryVisitor {
     private buffer?: string="";
@@ -35,8 +36,16 @@ export default class wktVisitor implements GeometryVisitor {
 
 
     getResult(): string {
-        
+
         return this.buffer;
+    }
+    
+
+    visitGeometryCollection(g: GeometryCollection) {
+        if (g.getNumGeometries() === 0) {
+            this.buffer = "GEOMETRYCOLLECTION EMPTY";
+            return;
+        }
     }
 
 }
