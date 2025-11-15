@@ -27,11 +27,16 @@ describe("test Point", () => {
         expect(p.x()).to.equal(3.0);
         expect(p.y()).to.equal(4.0);
     });
-    it("should translate point", () => {
+    it("test translate point", () => {
         const p = new Point([3.0, 4.0])
         p.translate(1.0, 2.0);
         expect(p.getCoordinate()).to.deep.equal([4.0, 6.0])
     });
+    it("test getEnvolope()", () => {
+        const p = new Point([3.0, 4.0])
+        let env=p.getEnvelope();
+        expect(env.toString()).to.equal("[3,4],[3,4]")
+    })
     it("test wkt empty", () => {
         const g = new Point();
         const writer = new WktWriter();
@@ -39,7 +44,7 @@ describe("test Point", () => {
         expect(wkt).to.deep.equal("POINT EMPTY");
     })
 
-    it("test wkt", () => {
+    it("test wkt point ", () => {
         const g = new Point([3.0, 4.0]);
         const writer = new WktWriter();
         const wkt = writer.write(g);

@@ -46,10 +46,11 @@ export default class Point implements Geometry {
 
   getEnvelope(): Envelope {
     var liste = new EnvelopeBuilder();
-    for (let point of this.points){
-      liste.insert(point.getcoordinate());
-    }
-    return liste.build();
+    liste.insert(this.getCoordinate());
+    let resultat=liste.build();
+
+
+    return resultat;
 
   }
 }
