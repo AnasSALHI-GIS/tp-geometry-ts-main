@@ -1,17 +1,16 @@
 import Coordinate from "./Coordinate";
 import Envelope from "./Envelope";
 import EnvelopeBuilder from "./EnvelopeBuilder";
-import Geometry from "./Geometry";
+import AbstractGeometry from "../src/AbstractGeometry";
 import GeometryVisitor from "./GeometryVisitor";
 
 
-export default class Point implements Geometry {
-  private coordinate?: Coordinate;
-  //points: any;
-
+export default class Point extends  AbstractGeometry {
   constructor(coordinate?: Coordinate) {
+    super();
     this.coordinate = coordinate || [] ;
   }
+  private coordinate?: Coordinate;
   isEmpty(): boolean {
     return this.coordinate.length == 0;
   }
