@@ -3,6 +3,7 @@ import { expect } from "chai";
 import Point from "../src/Point";
 import LineString from '../src/LineString'
 import WktWriter from '../src/WktWriter'
+import GeometryWithCachedEnvelope from '../src/GeometryWithCachedEnvelope'
 
 describe("test Point", () => {
     it("test default constructor", () => {
@@ -55,5 +56,15 @@ describe("test Point", () => {
         const p1 = new Point([2,3]);
         const resultat = p1.asText();
         expect(resultat).to.deep.equal("POINT(2 3)");
+    })
+    it("GeometryWithCachedEnvelope constructeur ", () => {
+        const p1 = new Point([1.0, 2.0]);
+        const p2 = new Point([3.0, 4.0]);
+        const l = new LineString([p1, p2]);
+        var g = new GeometryWithCachedEnvelope(l);
+        const a = g.getEnvelope();
+        const b = g.getEnvelope();
+        expect(a.toString()).to.deep.equal("[1,2],[3,4]");
+        expect(a).to.deep.equal(b);
     })
 });
