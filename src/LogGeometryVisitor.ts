@@ -19,7 +19,7 @@ export default class LogGeometryVisitor implements GeometryVisitor {
             return "Je suis une polyligne vide.";
         }else{
             const n=lineString.getNumPoints();
-            return "Je suis une polyligne définie par "+n+" 3 point(s)."
+            return "Je suis une polyligne définie par "+n+" point(s)."
         }
 
     }
