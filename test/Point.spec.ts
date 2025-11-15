@@ -54,6 +54,6 @@ describe("test Point", () => {
     it("test asText ", () => {
         const p1 = new Point([2,3]);
         const resultat = p1.asText();
-        expect(resultat).to.deep.equal("POINT(1 0)");
+        expect(resultat).to.deep.equal("POINT(2 3)");
     })
 });
