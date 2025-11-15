@@ -50,4 +50,10 @@ describe("test Point", () => {
         const wkt = writer.write(g);
         expect(wkt).to.deep.equal("POINT(3 4)");
     })
+
+    it("test asText ", () => {
+        const p1 = new Point([2,3]);
+        const resultat = p1.asText();
+        expect(resultat).to.deep.equal("POINT(1 0)");
+    })
 });
