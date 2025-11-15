@@ -2,11 +2,12 @@ import Coordinate from "./Coordinate";
 import Envelope from "./Envelope";
 import EnvelopeBuilder from "./EnvelopeBuilder";
 import Geometry from "./Geometry";
+import GeometryVisitor from "./GeometryVisitor";
 
 
 export default class Point implements Geometry {
   private coordinate?: Coordinate;
-  points: any;
+  //points: any;
 
   constructor(coordinate?: Coordinate) {
     this.coordinate = coordinate || [] ;
@@ -52,5 +53,9 @@ export default class Point implements Geometry {
 
     return resultat;
 
+  }
+
+  accept(visitor: GeometryVisitor) {
+    return visitor.visitPoint(this);
   }
 }
