@@ -9,6 +9,7 @@ import Point from "../src/Point";
 import LineString from '../src/LineString'
 import LogGeometryVisitor from '../src/LogGeometryVisitor'
 import wktVisitor from '../src/wktVisitor'
+import GeometryCollection from "../src/GeometryCollection";
 
 
 describe("test wktVisitor ", () => {
@@ -39,6 +40,60 @@ describe("test wktVisitor ", () => {
         expect(resultat3).to.deep.equal("Couple vide");
         expect(resultat4).to.deep.equal("Couple vide");
 
+    });
+
+    it("test visitLineString avec LineString vide", () => {
+        const visitor = new wktVisitor();
+        const emptyLineString = new LineString();
+        visitor.visitLineString(emptyLineString);
+        expect(visitor.getResult()).to.equal("LINESTRING EMPTY");
+    });
+
+    it("test visitGeometryCollection collection vide", () => {
+        const visitor = new wktVisitor();
+        const emptyCollection = new GeometryCollection();
+        visitor.visitGeometryCollection(emptyCollection);
+        expect(visitor.getResult()).to.equal("GEOMETRYCOLLECTION EMPTY");
+    });
+
+    it("test visitGeometryCollection autre collection", () => {
+        const visitor = new wktVisitor();
+        const point = new Point([1, 2]);
+        const lineString = new LineString([new Point([0, 0]),new Point([1, 1])]);
+        const collection = new GeometryCollection([point, lineString]);
+        visitor.visitGeometryCollection(collection);
+        expect(visitor.getResult()).to.equal("GEOMETRYCOLLECTION(POINT(1 2),LINESTRING(0 0,1 1))");
+    });
+
+    it("test wktVisitor ", () => {
+        let visitor = new wktVisitor();
+        new Point().accept(visitor);
+        expect(visitor.getResult()).to.equal("POINT EMPTY");
+
+        visitor = new wktVisitor();
+        new Point([3, 4]).accept(visitor);
+        expect(visitor.getResult()).to.equal("POINT(3 4)");
+
+        visitor = new wktVisitor();
+        new LineString().accept(visitor);
+        expect(visitor.getResult()).to.equal("LINESTRING EMPTY");
+
+        visitor = new wktVisitor();
+        
+        new LineString([new Point([0, 0]), new Point([1, 1]), new Point([2, 2])]).accept(visitor);
+        expect(visitor.getResult()).to.equal("LINESTRING(0 0,1 1,2 2)");
+
+        visitor = new wktVisitor();
+        new GeometryCollection().accept(visitor);
+        expect(visitor.getResult()).to.equal("GEOMETRYCOLLECTION EMPTY");
+
+        visitor = new wktVisitor();
+        const col = new GeometryCollection([
+            new Point([1, 1]), 
+            new LineString([new Point([0, 0]), new Point([1, 1])])
+        ]);
+        col.accept(visitor);
+        expect(visitor.getResult()).to.equal("GEOMETRYCOLLECTION(POINT(1 1),LINESTRING(0 0,2 2))");
     });
 
 

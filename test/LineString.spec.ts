@@ -62,6 +62,7 @@ describe("test LineString", () => {
         const wkt = writer.write(g);
         expect(wkt).to.deep.equal("LINESTRING(3 4,1 2)");
     })
+    
 
 
 
