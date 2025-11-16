@@ -5,6 +5,7 @@ import LineString from '../src/LineString'
 import WktWriter from '../src/WktWriter'
 import Coordinate from "../src/Coordinate";
 import Envelope from '../src/Envelope';
+import GeometryCollection from "../src/GeometryCollection";
 
 
 describe("test Envelope", () => {
@@ -25,6 +26,7 @@ describe("test Envelope", () => {
         expect(env.toString()).to.be.deep.equal("[1,2],[4,5]");
 
     });
+
 
 
 });
